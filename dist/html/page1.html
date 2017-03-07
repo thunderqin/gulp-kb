@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>地图展示</title>
+        <link rel="stylesheet" href="../css/reset.css">
+        <link rel="stylesheet" href="../css/page1.css">
+        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=OBagMcWGGwlCsXiWyYuU93ILtiDPXTgv"></script>
+    </head>
+    <body>
+        <h1>这是header的内容</h1>
+<img src="../img/bus.png" alt="">
+
+        <!-- 地图展示 -->
+        <div class="location-map">
+            <div class="localtion-inner clearfix">
+                <div class="localtion-info">
+                    <div class="map-top">
+                        <span class="hos-title">西京医院</span>
+                        <span class="hos-title-info">新城区长乐西路127号</span>
+                        <span class="hos-title-info">电话 : 029-84775507</span>
+                    </div>
+                    <ul class="sub-bus">
+                        <li class="item-bus item-bus-title">公交站 : 西京医院</li>
+                        <li class="item-bus-sub">
+                            <span>203路</span>
+                            <span>237路</span>
+                            <span>408路</span>
+                            <span>410路</span>
+                            <span>512路</span>
+                            <span>517路</span>
+                            <span>622路</span>
+                            <span>709路</span>
+                        </li>
+                        <li class="item-subway item-bus-title">地铁站 : 康复路</li>
+                        <li class="item-bus-sub">
+                            <span>地铁一号线</span>
+                        </li>
+                        <li class="item-subway2 item-bus-title">地铁站 : 通化门</li>
+                        <li class="item-bus-sub">
+                            <span>地铁一号线</span>
+                            <span>地铁三号线</span>
+                        </li>
+                    </ul>
+                </div>
+                <div id="map-target"></div>
+            </div>
+        </div>
+        <h1>这是footer的内容</h1>
+<img src="../img/bus.png" alt="">
+
+        <script type="text/javascript">
+            (function(){
+                // 百度地图API功能
+                var map = new BMap.Map("map-target");    // 创建Map实例
+                map.centerAndZoom(new BMap.Point(108.994,34.276), 16);  // 初始化地图,设置中心点坐标和地图级别
+                map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+                map.setCurrentCity("西京医院");          // 设置地图显示的城市 此项是必须设置的
+                map.enableScrollWheelZoom(true);   //开启鼠标滚轮缩放
+            })();
+        </script>
+    </body>
+</html>

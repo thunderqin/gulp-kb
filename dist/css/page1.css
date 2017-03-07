@@ -1,0 +1,103 @@
+/*---------------地理位置 地图展示*/
+.location-map{
+    width: 100%;
+    height: 500px;
+    border-top: 1px solid #DCDCDC;
+    box-sizing: border-box;
+    padding: 50px 0;
+}
+.localtion-inner{
+    width: 1200px;
+    height: 500px;
+    margin: 0 auto;
+}
+.localtion-inner .localtion-info{
+    float: left;
+    height: 400px;
+}
+.localtion-inner #map-target{
+    width: 600px;
+    height: 400px;
+    float: right;
+}
+.localtion-info .map-top{
+    width: 320px;
+    height: 110px;
+    box-sizing: border-box;
+    padding: 15px 0 0 20px;
+    color: #fff;
+    background: url('../img/map.png') no-repeat 100% 100%;
+}
+.map-top .hos-title{
+    font-size: 24px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.map-top .hos-title-info{
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+}
+/**/
+.localtion-info .sub-bus{
+    padding-top: 16px;
+}
+.localtion-info .sub-bus li{
+    padding-left: 40px;
+}
+.localtion-info .item-bus-title{
+    font-size: 14px;
+    color: #0abb8f;
+    margin-bottom: 25px;
+}
+.localtion-info .item-bus-sub{
+    margin-bottom: 34px;
+    color: #333;
+}
+.localtion-info .item-bus-sub span{
+    margin-right: 20px;
+}
+.sub-bus .item-bus,
+.sub-bus .item-subway,
+.sub-bus .item-subway2{
+    position: relative;
+}
+.sub-bus .item-bus:before{
+    content: '';
+    display: block;
+    background: url('../img/bus.png') no-repeat;
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 24px;
+    height: 28px;
+}
+.sub-bus .item-subway:before{
+    content: '';
+    display: block;
+    background: url('../img/subway.png') no-repeat;
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 28px;
+    height: 28px;
+}
+.sub-bus .item-subway2:before{
+    content: '';
+    display: block;
+    background: url('../img/subway.png') no-repeat;
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 28px;
+    height: 28px;
+}
+/*地图媒体查询*/
+@media screen and (max-width:1200px) {
+    .localtion-inner{
+        width: 1020px;
+    }
+    .localtion-info .item-bus-sub span{
+        margin-right: 4px;
+    }
+}

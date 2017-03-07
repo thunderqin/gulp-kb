@@ -26,7 +26,7 @@ gulp.task('css', function() {
     return gulp.src('src/css/*.css')
     //   .pipe(less())
     //   .pipe(cleanCSS())
-    //   .pipe(autoprefixer())
+      .pipe(autoprefixer())
       .pipe(gulp.dest('dist/css'))
 });
 
@@ -44,11 +44,19 @@ gulp.task('data', function () { //压缩
 
 gulp.task('html', function () {
     return gulp.src('src/*.html')
+        .pipe(fileinclude({
+          prefix:'@@',
+          basepath:'@file'
+        }))
         .pipe(gulp.dest('dist'))
 });
 
 gulp.task('htmlPages', function () {
     return gulp.src('src/html/*.html')
+        .pipe(fileinclude({
+          prefix:'@@',
+          basepath:'@file'
+        }))
         .pipe(gulp.dest('dist/html'))
 });
 
@@ -67,23 +75,24 @@ gulp.task('watch', function () {
      gulp.watch(['src/**/*'],reload);
 });
 
-//首页加载html片段
-gulp.task('fileinclude',function(){
-  gulp.src(['src/*.html','!src/template/*.html'])
-      .pipe(fileinclude({
-        prefix:'@@',
-        basepath:'@file'
-      }))
-      .pipe(gulp.dest('src'));
-})
-//其他页面
-gulp.task('otherclude',function(){
-  gulp.src(['src/html/*.html','!src/template/*.html'])
-      .pipe(fileinclude({
-        prefix:'@@',
-        basepath:'@file'
-      }))
-      .pipe(gulp.dest('src/html'));
-})
+//生产环境保持include 片段 方便更改
+// //首页加载html片段
+// gulp.task('fileinclude',function(){
+//   gulp.src(['src/*.html','!src/template/*.html'])
+//       .pipe(fileinclude({
+//         prefix:'@@',
+//         basepath:'@file'
+//       }))
+//       .pipe(gulp.dest('src'));
+// })
+// //其他页面
+// gulp.task('otherclude',function(){
+//   gulp.src(['src/html/*.html','!src/template/*.html'])
+//       .pipe(fileinclude({
+//         prefix:'@@',
+//         basepath:'@file'
+//       }))
+//       .pipe(gulp.dest('src/html'));
+// })
 
-gulp.task('default',['image','js','data','css','html','htmlPages','static','fileinclude','otherclude','serve','watch']);
+gulp.task('default',['image','js','data','css','html','htmlPages','static','serve','watch']);
