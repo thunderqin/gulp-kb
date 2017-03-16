@@ -10,6 +10,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     fileinclude = require('gulp-file-include'),
     less = require('gulp-less'),
+    sass = require('gulp-sass'),
     cache = require('gulp-cache');//在很多情况下我们只修改了某些图片，没有必要压缩所有图片，使用”gulp-cache”只压缩修改的图片
 
 gulp.task('image', function() {
@@ -67,32 +68,34 @@ gulp.task('static', function (){
 
 gulp.task('serve', function () {
    browserSync.init({
-         server:{baseDir:'./src'},
+         server:{baseDir:'./dist'},
           browser:'chrome'});
 });
-
+gulp.task('reload',function(){
+  reload();
+})
 gulp.task('watch', function () {
-     gulp.watch(['src/**/*'],reload);
+     gulp.watch(['src/**/*'],['fileinclude','reload']);
 });
 
 //生产环境保持include 片段 方便更改
 // //首页加载html片段
-// gulp.task('fileinclude',function(){
-//   gulp.src(['src/*.html','!src/template/*.html'])
-//       .pipe(fileinclude({
-//         prefix:'@@',
-//         basepath:'@file'
-//       }))
-//       .pipe(gulp.dest('src'));
-// })
+gulp.task('fileinclude',function(){
+  gulp.src(['src/*.html','!src/template/*.html'])
+      .pipe(fileinclude({
+        prefix:'@@',
+        basepath:'@file'
+      }))
+      .pipe(gulp.dest('dist'));
+})
 // //其他页面
-// gulp.task('otherclude',function(){
-//   gulp.src(['src/html/*.html','!src/template/*.html'])
-//       .pipe(fileinclude({
-//         prefix:'@@',
-//         basepath:'@file'
-//       }))
-//       .pipe(gulp.dest('src/html'));
-// })
+gulp.task('otherclude',function(){
+  gulp.src(['src/html/*.html','!src/template/*.html'])
+      .pipe(fileinclude({
+        prefix:'@@',
+        basepath:'@file'
+      }))
+      .pipe(gulp.dest('dist/html'));
+})
 
-gulp.task('default',['image','js','data','css','html','htmlPages','static','serve','watch']);
+gulp.task('default',['image','js','data','css','html','htmlPages','static','serve','fileinclude','otherclude','watch']);
